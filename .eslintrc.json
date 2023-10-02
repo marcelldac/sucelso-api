@@ -9,5 +9,8 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "quotes": ["error", "double"],
+        "indent": ["error"],
+        "react/prop-types": ["off"]
     }
 }
