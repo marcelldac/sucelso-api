@@ -6,40 +6,49 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
+  url = env("DATABASE_URL")
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
-  name      String
-  email     String @unique
-  password  String
-  telefone  String
-  cpf       String
-  hierarchy Int
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  telefone String
+  cpf String
+  hierarchy Int // 0
 }
 
-model Teacher {
-  id        Int       @id @default(autoincrement())
-  name      String
-  email     String    @unique
-  password  String
-  subject   Subject[]
-  hierarchy Int
-}
-
-model Subject {
-  id        Int      @id @default(autoincrement())
-  name      String
-  teacherId Int      @unique
-  teacher   Teacher? @relation(fields: [teacherId], references: [id])
-  courseId Int @unique
-  course Course? @relation(fields: [courseId], references: [id])
+model Coordinator{
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  hierarchy Int // 2
 }
 
 model Course {
   id Int @id @default(autoincrement())
   name String
-  subjects Subject[]
+  grades Grade[]
 }
+
+model Teacher {
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  grades Grade[]
+  hierarchy Int // 1
+}
+
+model Grade { //Substitui matéria
+  id Int @id @default(autoincrement())
+  name String
+  teacherId Int @unique
+  teacher Teacher? @relation(fields: [teacherId], references: [id])
+  courseId Int @unique
+  course Course? @relation(fields: [courseId], references: [id])
+}
+
