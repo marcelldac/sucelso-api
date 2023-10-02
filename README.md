@@ -22,7 +22,7 @@ DATABASE_URL="postgresql://<user>:<pass>@<server>:<port>/<db_name>?schema=<shema
 ex: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/learnmore?schema=public"
 
 # Iniciar o prisma:
-
+### Forma mais rápida: Apagar as migrations e rodar o comando abaixo:
 ```bash
-npx prisma init
+npx prisma migrate dev
 ```
