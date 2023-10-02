@@ -29,9 +29,9 @@ exports.create = async (req, res) => {
                 hierarchy: 1,
             },
         });
-        return res.status(201).json({ msg: teacher });
+        return res.status(201).json({teacher});
     } catch (err) {
-        return res.status(500).json({ msg: err });
+        return res.status(500).json({err});
     }
 }
 
