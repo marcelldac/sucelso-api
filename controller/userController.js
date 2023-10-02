@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 //#region Create User
 
 exports.create = async (req, res) => {
-    let { name, email, password, telefone, cpf } = req.body;
+    let { name, email, password, telefone, cpf, courseId } = req.body;
 
     password = await bcrypt.hash(password, 8);
 
@@ -28,7 +28,8 @@ exports.create = async (req, res) => {
                 password,
                 telefone,
                 cpf,
-                hierarchy: 0
+                hierarchy: 0,
+                courseId
             },
         });
         return res.status(201).json({ msg: user });
