@@ -1,15 +1,10 @@
 const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcrypt");
-
 const prisma = new PrismaClient();
 
 //#region Create User
 
 exports.create = async (req, res) => {
     let { name, email, password, telefone, cpf, courseId } = req.body;
-
-    const saltRounds = 8;
-    password = await bcrypt.hash(password, saltRounds);
 
     const emailInUse = await prisma.user.findUnique({
         where: {
@@ -18,7 +13,7 @@ exports.create = async (req, res) => {
     });
 
     if (emailInUse != null) {
-        return res.status(403).send();
+        return res.status(403).send("E-mail em uso.");
     }
 
     try {
@@ -33,9 +28,9 @@ exports.create = async (req, res) => {
                 courseId
             },
         });
-        return res.status(201).json({ msg: user });
+        return res.status(201).json(user);
     } catch (err) {
-        return res.status(500).json({ msg: err });
+        return res.status(500).json(err);
     }
 }
 
