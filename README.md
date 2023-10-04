@@ -17,9 +17,8 @@ npm run dev
 - Adicione:
 
 ```prisma
-DATABASE_URL="postgresql://<user>:<pass>@<server>:<port>/<db_name>?schema=<shema>"
+mysql://<user>:<password>@<host>:<port>/<db>
 ```
-ex: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/learnmore?schema=public"
 
 # Iniciar o prisma:
 ### Forma mais rápida: Apagar as migrations e rodar o comando abaixo:
