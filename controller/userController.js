@@ -8,7 +8,8 @@ const prisma = new PrismaClient();
 exports.create = async (req, res) => {
     let { name, email, password, telefone, cpf, courseId } = req.body;
 
-    password = await bcrypt.hash(password, 8);
+    const saltRounds = 8;
+    password = await bcrypt.hash(password, saltRounds);
 
     const emailInUse = await prisma.user.findUnique({
         where: {
