@@ -44,7 +44,7 @@ exports.create = async (req, res) => {
 
 exports.read = async (req, res) => {
     const users = await prisma.user.findMany();
-    res.status(200).json({ users });
+    res.status(200).json(users);
 }
 
 exports.readById = async (req, res) => {

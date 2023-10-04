@@ -91,7 +91,7 @@ exports.update = async (req, res) => {
         },
     });
 
-    return res.status(200).json({coordinator});
+    return res.status(200).json(coordinator);
 }
 
 //#endregion

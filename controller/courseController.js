@@ -30,7 +30,7 @@ exports.read = async (req, res) => {
             users: true
         }
     });
-    res.status(200).json({ course });
+    res.status(200).json(course);
 }
 
 exports.readById = async (req, res) => {

@@ -45,7 +45,7 @@ exports.read = async (req, res) => {
             grades: true
         },
     });
-    res.status(200).json({ teachers });
+    res.status(200).json(teachers);
 }
 
 exports.readById = async (req, res) => {
@@ -62,7 +62,7 @@ exports.readById = async (req, res) => {
         return res.status(404).json({ msg: "Professor Não Encontrado" });
     }
 
-    return res.status(200).json({teacher});
+    return res.status(200).json(teacher);
 }
 
 //#endregion

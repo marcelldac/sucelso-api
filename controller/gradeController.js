@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
 
 exports.read = async (req, res) => {
     const grade = await prisma.grade.findMany();
-    res.status(200).json({grade});
+    res.status(200).json(grade);
 }
 
 exports.readById = async (req, res) => {
