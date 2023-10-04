@@ -1,15 +1,10 @@
 const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcrypt");
-
 const prisma = new PrismaClient();
 
 //#region Create Teacher
 
 exports.create = async (req, res) => {
     let { name, email, password } = req.body;
-
-    const saltRounds = 8;
-    password = await bcrypt.hash(password, saltRounds);
 
     const emailInUse = await prisma.teacher.findUnique({
         where: {
