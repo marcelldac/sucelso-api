@@ -1,6 +1,6 @@
-[Front-end Repo](https://github.com/marcelldac/client_learn_more_system)
+# [Front-end Repo](https://github.com/marcelldac/client_learn_more_system)
 
-# Rodar o servidor:
+## Rodar o servidor
 
 ```bash
 npm i
@@ -10,7 +10,7 @@ npm i
 npm run dev
 ```
 
-# Credenciais do db:
+## Credenciais do db
 
 - Crie um arquivo '.env' na pasta root
 
@@ -20,8 +20,10 @@ npm run dev
 mysql://<user>:<password>@<host>:<port>/<db>
 ```
 
-# Iniciar o prisma:
-### Forma mais rápida: Apagar as migrations e rodar o comando abaixo:
+### Iniciar o prisma
+
+## Forma mais rápida: Apagar as migrations e rodar o comando abaixo
+
 ```bash
 npx prisma migrate dev
 ```
