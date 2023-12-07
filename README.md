@@ -1,6 +1,4 @@
-# [Front-end Repo](https://github.com/marcelldac/client_learn_more_system)
-
-## Rodar o servidor
+# Rodar o servidor
 
 ```bash
 npm i
@@ -10,19 +8,11 @@ npm i
 npm run dev
 ```
 
-## Credenciais do db
+## Banco de dados
 
-- Crie um arquivo '.env' na pasta root
+- Essa API precisa de um banco de dados para rodar. Crie sua instancia postgres e use a string de conexão no .env
 
-- Adicione:
-
-```prisma
-mysql://<user>:<password>@<host>:<port>/<db>
-```
-
-### Iniciar o prisma
-
-## Forma mais rápida: Apagar as migrations e rodar o comando abaixo
+### Migrar alterações pro db
 
 ```bash
 npx prisma migrate dev
