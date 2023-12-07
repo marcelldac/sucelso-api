@@ -9,9 +9,9 @@ exports.create = async (req, res) => {
         name,
       },
     });
-    return res.status(201).json({ msg: course });
+    return res.status(201).json({ message: course });
   } catch (err) {
-    return res.status(500).json({ msg: err });
+    return res.status(500).json({ message: err });
   }
 };
 //#endregion
@@ -29,7 +29,7 @@ exports.readById = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
-    return res.status(400).json({ msg: "Id Obrigatório" });
+    return res.status(400).json({ message: "Id Obrigatório" });
   }
   const course = await prisma.course.findUnique({
     where: {
@@ -40,7 +40,7 @@ exports.readById = async (req, res) => {
     },
   });
   if (!course) {
-    return res.status(404).json({ msg: "Curso Não Encontrado" });
+    return res.status(404).json({ message: "Curso Não Encontrado" });
   }
   return res.status(200).json(course);
 };
@@ -69,7 +69,7 @@ exports.update = async (req, res) => {
       name,
     },
   });
-  return res.status(200).json({ course });
+  return res.status(200).json(course);
 };
 //#endregion
 //#region Delete course
@@ -77,15 +77,15 @@ exports.delete = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
-    return res.status(400).json({ msg: "Id Não Encontrado" });
+    return res.status(400).json({ message: "Id Não Encontrado" });
   }
   const courseChecker = await prisma.course.findUnique({
     where: { id: newId },
   });
   if (!courseChecker) {
-    return res.status(404).json({ msg: "Curso Não Encontrado" });
+    return res.status(404).json({ message: "Curso Não Encontrado" });
   }
   await prisma.course.delete({ where: { id: newId } });
-  return res.status(204).json({ msg: "Curso Removido" });
+  return res.status(204).json({ message: "Curso Removido" });
 };
 //#endregion
