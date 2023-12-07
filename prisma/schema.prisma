@@ -4,12 +4,10 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "postgresql"
   url = env("DATABASE_URL")
 }
-
 model Coordinator{
   id Int @id @default(autoincrement())
   name String
@@ -17,14 +15,12 @@ model Coordinator{
   password String
   hierarchy Int // 2
 }
-
 model Course {
   id Int @id @default(autoincrement())
   name String
   grades Grade[]
   users User[]
 }
-
 model User { // Aluno
   id Int @id @default(autoincrement())
   name String
@@ -36,7 +32,6 @@ model User { // Aluno
   course Course? @relation(fields: [courseId], references: [id])
   courseId Int
 }
-
 model Teacher {
   id Int @id @default(autoincrement())
   name String
@@ -45,7 +40,6 @@ model Teacher {
   grades Grade[]
   hierarchy Int // 1
 }
-
 model Grade { //Substitui matéria
   id Int @id @default(autoincrement())
   name String
