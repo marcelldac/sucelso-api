@@ -1,16 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3333;
 const userRouter = require("./router/user");
 const loginRouter = require("./router/login");
 const teacherRouter = require("./router/teacher");
 const gradeRouter = require("./router/grade");
 const courseRouter = require("./router/course");
 const coordinatorRouter = require("./router/coordinator");
-
 app.use(cors());
 app.use(express.json());
 app.use("/users", userRouter);
@@ -19,8 +16,6 @@ app.use("/teachers", teacherRouter);
 app.use("/grades", gradeRouter);
 app.use("/courses", courseRouter);
 app.use("/coordinators", coordinatorRouter);
-
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+  console.log(`Listening on port ${PORT}`);
 });
-
