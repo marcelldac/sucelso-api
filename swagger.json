@@ -1,1 +1,116 @@
-{}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Sucelso API",
+    "description": "Um projeto acadêmico que simula uma interface funcional de uma escola. Com relacionamentos entre entidades como turmas, professores e cursos.",
+    "contact": {
+      "email": "dacmarcell@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333",
+      "description": "API de teste"
+    },
+    {
+      "url": "",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Consultar usuários",
+        "description": "Essa rota é responsável por consultar todos os usuários.",
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastro de usuário",
+        "description": "Essa rota é responsável por cadastrar um novo usuário.",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "John Doe",
+                    "email": "johndoe@email.com",
+                    "password": "crazy-j0hnD0003",
+                    "telefone": "+18989898989",
+                    "cpf": "01234568901",
+                    "courseId": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "courseId": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
