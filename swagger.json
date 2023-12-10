@@ -12,10 +12,6 @@
     {
       "url": "http://localhost:3333",
       "description": "API de teste"
-    },
-    {
-      "url": "",
-      "description": "API de produção"
     }
   ],
   "paths": {
@@ -83,6 +79,59 @@
             "description": "Erro interno do servidor"
           }
         }
+      }
+    },
+    "users/{id}": {
+      "get": {
+        "summary": "Consultar usuários por id",
+        "description": "Essa rota é responsável por consultar um usuário por id.",
+        "tags": ["Users"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualização de usuário",
+        "description": "Essa rota é responsável por atualizar um usuário.",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "John Doe 2",
+                    "email": "johndoe2@email.com",
+                    "password": "crazy-j0hnD00032",
+                    "telefone": "+18989898982",
+                    "cpf": "01234568902",
+                    "courseId": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Exclusão de usuário",
+        "description": "Essa rota é responsável por excluir um usuário.",
+        "tags": ["Users"]
       }
     }
   },
