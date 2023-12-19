@@ -4,7 +4,7 @@ import {
   readById,
   update,
   remove,
-} from "../controller/courseController";
+} from "../controller/courseController.js";
 import { Router } from "express";
 
 const router = Router();

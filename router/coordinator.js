@@ -4,7 +4,7 @@ import {
   readById,
   update,
   remove,
-} from "../controller/coordinatorController";
+} from "../controller/coordinatorController.js";
 import { Router } from "express";
 
 const router = Router();
