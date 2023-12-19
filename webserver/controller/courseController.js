@@ -1,4 +1,4 @@
-import prisma from "../prisma-client";
+import prisma from "../../database/prisma/index.js";
 //#region Create course
 const create = async (req, res) => {
   const { name } = req.body;

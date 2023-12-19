@@ -1,5 +1,5 @@
-import createDatabaseConnection from "./database.js";
-import createWebServer from "./webserver.js";
+import createDatabaseConnection from "./database/index.js";
+import createWebServer from "./webserver/index.js";
 
 function createCore() {
   const database = createDatabaseConnection();

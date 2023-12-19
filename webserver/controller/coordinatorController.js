@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import prisma from "../prisma-client.js";
-import { SALT_ROUNDS } from "../utils/constants.js";
+import prisma from "../../database/prisma/index.js";
+import { SALT_ROUNDS } from "../../utils/constants.js";
 //#region Create Coordinator
 const create = async (req, res) => {
   let { name, email, password } = req.body;

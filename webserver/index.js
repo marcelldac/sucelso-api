@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import swaggerUI from "swagger-ui-express";
-import swaggerDocument from "./swagger.json" assert { type: "json" };
 import userRouter from "./router/user.js";
 import loginRouter from "./router/login.js";
 import teacherRouter from "./router/teacher.js";
@@ -24,7 +23,6 @@ function createWebServer() {
     app.use("/grades", gradeRouter);
     app.use("/courses", courseRouter);
     app.use("/coordinators", coordinatorRouter);
-    app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
     console.log("[webserver] finish map");
     server = app.listen(PORT);
     console.log(`[webserver] app running on ${PORT}`);

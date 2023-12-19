@@ -1,3 +1,4 @@
+import prisma from "../../database/prisma/index.js";
 //#region Create User
 const create = async (req, res) => {
   let { name, email, password, telefone, cpf, courseId } = req.body;

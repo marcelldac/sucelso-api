@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import prisma from "../prisma-client.js";
+import prisma from "../../database/prisma/index.js";
 
 //#region Add Logged User
 const user = async (req, res) => {
