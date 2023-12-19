@@ -56,4 +56,4 @@ const coordinator = async (req, res) => {
 };
 //#endregion
 
-export { coordinator, teacher, user, coordinator };
+export { coordinator, teacher, user };
