@@ -1,7 +1,6 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+import prisma from "../prisma-client.js";
 //#region Create Teacher
-exports.create = async (req, res) => {
+const create = async (req, res) => {
   let { name, email, password } = req.body;
   const emailInUse = await prisma.teacher.findUnique({
     where: {
@@ -27,7 +26,7 @@ exports.create = async (req, res) => {
 };
 //#endregion
 //#region Read Teacher
-exports.read = async (req, res) => {
+const read = async (req, res) => {
   const teachers = await prisma.teacher.findMany({
     include: {
       grades: true,
@@ -35,7 +34,7 @@ exports.read = async (req, res) => {
   });
   res.status(200).json(teachers);
 };
-exports.readById = async (req, res) => {
+const readById = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
@@ -49,7 +48,7 @@ exports.readById = async (req, res) => {
 };
 //#endregion
 //#region Update Teacher
-exports.update = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   const { name, email, password } = req.body;
   const newId = parseInt(id);
@@ -76,7 +75,7 @@ exports.update = async (req, res) => {
 };
 //#endregion
 //#region Delete Teacher
-exports.delete = async (req, res) => {
+const remove = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
@@ -92,3 +91,5 @@ exports.delete = async (req, res) => {
   return res.status(204).json({ msg: "Professor Removido" });
 };
 //#endregion
+
+export { create, read, readById, update, remove };

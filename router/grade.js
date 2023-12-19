@@ -1,9 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const gradeController = require("../controller/gradeController");
+import gradeController from "../controller/gradeController.js";
+import { Router } from "express";
+
+const router = Router();
+
 router.get("/", gradeController.read);
 router.get("/:id", gradeController.readById);
 router.post("/", gradeController.create);
 router.put("/:id", gradeController.update);
 router.delete("/:id", gradeController.delete);
-module.exports = router;
+
+export default router;

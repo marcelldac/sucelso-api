@@ -1,7 +1,5 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
 //#region Create User
-exports.create = async (req, res) => {
+const create = async (req, res) => {
   let { name, email, password, telefone, cpf, courseId } = req.body;
   const emailInUse = await prisma.user.findUnique({
     where: {
@@ -30,11 +28,11 @@ exports.create = async (req, res) => {
 };
 //#endregion
 //#region Read User
-exports.read = async (req, res) => {
+const read = async (req, res) => {
   const users = await prisma.user.findMany();
   res.status(200).json(users);
 };
-exports.readById = async (req, res) => {
+const readById = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
@@ -48,7 +46,7 @@ exports.readById = async (req, res) => {
 };
 //#endregion
 //#region Update User
-exports.update = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   const { name, email, password, telefone, cpf } = req.body;
   const newId = parseInt(id);
@@ -77,7 +75,7 @@ exports.update = async (req, res) => {
 };
 //#endregion
 //#region Delete User
-exports.delete = async (req, res) => {
+const remove = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
@@ -91,3 +89,4 @@ exports.delete = async (req, res) => {
   return res.status(204).json({ msg: "Usuário Removido" });
 };
 //#endregion
+export { create, read, readById, update, remove };

@@ -1,7 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const loginController = require("../controller/loginController");
-router.post("/user", loginController.user);
-router.post("/teacher", loginController.teacher);
-router.post("/coordinator", loginController.coordinator);
-module.exports = router;
+import { user, coordinator, teacher } from "../controller/loginController.js";
+import { Router } from "express";
+
+const router = Router();
+
+router.post("/user", user);
+router.post("/teacher", teacher);
+router.post("/coordinator", coordinator);
+
+export default router;

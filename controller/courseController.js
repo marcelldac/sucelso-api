@@ -1,7 +1,6 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+import prisma from "../prisma-client";
 //#region Create course
-exports.create = async (req, res) => {
+const create = async (req, res) => {
   const { name } = req.body;
   try {
     const course = await prisma.course.create({
@@ -16,7 +15,7 @@ exports.create = async (req, res) => {
 };
 //#endregion
 //#region Read course
-exports.read = async (req, res) => {
+const read = async (req, res) => {
   const course = await prisma.course.findMany({
     include: {
       grades: true,
@@ -25,7 +24,7 @@ exports.read = async (req, res) => {
   });
   res.status(200).json(course);
 };
-exports.readById = async (req, res) => {
+const readById = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
@@ -46,7 +45,7 @@ exports.readById = async (req, res) => {
 };
 //#endregion
 //#region Update course
-exports.update = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   const newId = parseInt(id);
@@ -73,7 +72,7 @@ exports.update = async (req, res) => {
 };
 //#endregion
 //#region Delete course
-exports.delete = async (req, res) => {
+const remove = async (req, res) => {
   const { id } = req.params;
   const newId = parseInt(id);
   if (!newId) {
@@ -89,3 +88,4 @@ exports.delete = async (req, res) => {
   return res.status(204).json({ message: "Curso Removido" });
 };
 //#endregion
+export { create, read, readById, update, remove };

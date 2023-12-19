@@ -1,8 +1,7 @@
-const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcrypt");
-const prisma = new PrismaClient();
+import bcrypt from "bcrypt";
+import prisma from "../prisma-client.js";
 //#region Create Coordinator
-exports.create = async (req, res) => {
+const create = async (req, res) => {
   let { name, email, password } = req.body;
   const saltRounds = 8;
   password = await bcrypt.hash(password, saltRounds);
@@ -30,11 +29,11 @@ exports.create = async (req, res) => {
 };
 //#endregion
 //#region Read Coordinator
-exports.read = async (req, res) => {
+const read = async (req, res) => {
   const coordinator = await prisma.coordinator.findMany();
   res.status(200).json(coordinator);
 };
-exports.readById = async (req, res) => {
+const readById = async (req, res) => {
   const { id } = req.params;
   if (!id) {
     return res.status(400).json({ message: "Id Obrigatório" });
@@ -49,7 +48,7 @@ exports.readById = async (req, res) => {
 };
 //#endregion
 //#region Update Coordinator
-exports.update = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   if (!id) {
     res.status(400).json({ message: "Id obrigatório" });
@@ -74,7 +73,7 @@ exports.update = async (req, res) => {
 };
 //#endregion
 //#region Delete Coordinator
-exports.delete = async (req, res) => {
+const remove = async (req, res) => {
   const { id } = req.params;
   if (!id) {
     return res.status(400).json({ message: "Id Não Encontrado" });
@@ -89,3 +88,4 @@ exports.delete = async (req, res) => {
   return res.status(204).json({ message: "Coordenador Removido" });
 };
 //#endregion
+export { create, read, readById, update, remove };

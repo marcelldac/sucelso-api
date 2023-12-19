@@ -1,8 +1,8 @@
-const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcrypt");
-const prisma = new PrismaClient();
+import bcrypt from "bcrypt";
+import prisma from "../prisma-client.js";
+
 //#region Add Logged User
-exports.user = async (req, res) => {
+const user = async (req, res) => {
   const { email, password } = req.body;
   const user = await prisma.user.findFirst({
     where: {
@@ -20,7 +20,7 @@ exports.user = async (req, res) => {
 };
 //#endregion
 //#region Add Logged Teacher
-exports.teacher = async (req, res) => {
+const teacher = async (req, res) => {
   const { email, password } = req.body;
   const user = await prisma.teacher.findFirst({
     where: {
@@ -38,7 +38,7 @@ exports.teacher = async (req, res) => {
 };
 //#endregion
 //#region Add Logged Coordinator
-exports.coordinator = async (req, res) => {
+const coordinator = async (req, res) => {
   const { email, password } = req.body;
   const user = await prisma.coordinator.findFirst({
     where: {
@@ -55,3 +55,5 @@ exports.coordinator = async (req, res) => {
   return res.status(200).json({ msg: "Ok" });
 };
 //#endregion
+
+export { coordinator, teacher, user, coordinator };
